@@ -1,0 +1,97 @@
+*{
+    background-color: hsl(190,53%,7%);
+}
+.covid-signup-heading{
+    color: white;
+    text-align: center;
+    font-weight: bolder;
+}
+.signup{
+    display: flex;
+    justify-content: center;
+}
+
+.form_container{
+    display: flex;
+    justify-content: center;
+    background-color: hsl(190,53%,7%);
+    background-size: cover;
+    width: 65%;
+    margin: auto;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 30px;
+    color: white;
+}
+.signup-img-div{
+    width: 55%;
+    height: 400px;
+}
+form{
+    
+    width: 45%;
+    height: 77%;
+    border-radius: 10px;
+    /* margin-top: 30px; */
+}
+#lab{
+    font-size: 13px;
+    /* color: red; */
+    font-weight: bold;
+}
+.signinp{
+    width: 250px;
+    height: 20px;
+    font-size: 20px;
+    border: 1px solid black;
+}
+#subbtn{
+
+    width: 70px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: green;
+    cursor: pointer;
+    margin-left: 25%;
+   
+}
+#subbtn:active{
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.logn-btn{
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+}
+input{
+    color: white;
+}
+
+@media only screen and (max-width: 700px){
+
+    .form_container{
+        width: 100%;
+        margin-top: 0px;
+    }
+    .signup-img-div{
+        width: 40%;
+    }
+    .signinp{
+        width: 100%;
+    }
+    form{
+        width: 55%;
+    }
+    #lab{
+        font-size: 11px;
+        /* color: red; */
+        font-weight: bold;
+    }
+    #subbtn{
+        width: 70px;
+        height: 25px;   
+    }
+}
