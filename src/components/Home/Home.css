@@ -1,0 +1,40 @@
+.home{
+    background-color: white !important;
+}
+.corona-top-heading-div{
+    width: 70%;
+    margin: auto;
+    background-color: whitesmoke;
+    text-align: center;
+}
+.global-cases-container{
+    width: 70%;
+    margin: auto;
+    background-color: whitesmoke;
+    text-align: center;
+}
+.global-para-heading{
+    font-size: 40px;
+}
+.total-record{
+    margin-top: -50px;
+}
+.para1{
+    color: blue;
+}
+.para2{
+    color: red;
+}
+.para3{
+    color: green;
+}
+.country-records-conatiner{
+    width: 90%;
+    margin: auto;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+}
+thead th{
+    font-size: 20px;
+}

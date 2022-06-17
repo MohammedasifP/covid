@@ -23,12 +23,12 @@ const senddata=(e)=>{
       method:"POST",
       body:JSON.stringify(logindata),
       headers:{"content-type":"application/json"}
-  }).then(Response=>Response.json()).then((data)=>{dispatch(loginsuccess(data));if(data.token)navigate("/"); else{alert(data.message)}}).catch(dispatch(loginfailure()))
+  }).then(Response=>Response.json()).then((data)=>{dispatch(loginsuccess(data));if(data.token)navigate("/home"); else{alert(data.message)}}).catch(dispatch(loginfailure()))
 }
 
   return(
-      <div>
-        <div className="Covid-Login-Form">Covid Login Form</div>
+      <div className="singup-container">
+        <div className="Covid-Login-Form">CovidApp Login Form</div>
         <div className="form_container">
          <div className='signup-img-div'>
                 <img width="100%" height="100%" src="https://images.unsplash.com/photo-1584291527905-f930791fb1ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80" />

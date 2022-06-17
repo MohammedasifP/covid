@@ -23,8 +23,8 @@ const senddata=(e)=>{
 }
 
    return(
-       <div>
-           <div className='covid-signup-heading'>Covid Signup Form</div>
+       <div className='singup-container'>
+           <div className='covid-signup-heading'>CovidApp Signup Form</div>
            <div  className="form_container">
               <div className='signup-img-div'>
                 <img width="100%" height="100%" src="https://images.unsplash.com/photo-1584291527905-f930791fb1ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80" />
