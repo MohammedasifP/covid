@@ -39,7 +39,10 @@ const [countrydata,setCountrydata]=useState([])
 const [icon,setIcon]=useState(true)
 const [totalcases,setTotalcases]=useState(true);
 const [totaldeaths,setTotaldeaths]=useState(true);
-console.log(covidata)
+const [country,setCountry]=useState({country:""})
+const [showcountry,setShowcountry]=useState({})
+const [showcountrydiv,setShowcountrydiv]=useState(false)
+
 
 const [date,setDate]=useState({date:""})
     useEffect(()=>{
@@ -99,7 +102,22 @@ const [date,setDate]=useState({date:""})
     }
         
    }
-
+   const handlechange=(e)=>{
+       const {value}=e.target;
+       setCountry(value)
+   }
+   const displayCountry=()=>{
+      const cdata=countrydata.filter((elem)=>{return elem.Country.toLowerCase()==country.toLowerCase()})
+        if(cdata.length==0){
+            alert("please enter correct country name")
+        }
+        else{
+            setShowcountrydiv(true)
+            setShowcountry(cdata[0])
+        }
+       
+   }
+   console.log(showcountry)
     return (
         <div className="home">
            <div className="corona-top-heading-div">
@@ -121,8 +139,9 @@ const [date,setDate]=useState({date:""})
                 <h1 className="total-record">{covidata.TotalRecovered}</h1>
              </div> 
            </div>
+           
+           {/* Globalplot */}
            <div style={{height:"350px"}}>
-        
              <div className="Bar-container" style={{height:"100%",width:"60%",border:"1px solid black"}}>
                <Bar
                  data={{
@@ -144,7 +163,63 @@ const [date,setDate]=useState({date:""})
                 </div>
                 <p className="global-plot">Global Plot</p>
              </div>
-          
+
+             {/* Single country div */}
+            <div className="country-search-div">
+                <input type="text" placeholder="Enter the Country" onChange={handlechange}></input>
+                <button onClick={displayCountry}>Search</button>
+            </div>
+            {showcountrydiv?
+            <div className="single-country-container">
+                <button onClick={()=>{setShowcountrydiv(false)}}>Back</button>
+                <div className="single-country-table-container">
+                    <table className="single-country-table" border="1px solid black" cellSpacing="0px">
+                        <thead>
+                            <tr>
+                                <th>Country </th>
+                                <th>Total Cases </th>
+                                <th>New Cases</th>
+                                <th>Total Deaths</th>
+                                <th>New Deaths</th>
+                                <th>Total Recovered</th>
+                                <th>New Recovered</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{showcountry.Country}</td>
+                                <td>{showcountry.TotalConfirmed}</td>
+                                <td>{showcountry.NewConfirmed}</td>
+                                <td>{showcountry.TotalDeaths}</td>
+                                <td>{showcountry.NewDeaths}</td>
+                                <td>{showcountry.TotalRecovered}</td>
+                                <td>{showcountry.NewRecovered}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style={{width:"50%",margin:"auto"}}>
+                    <Bar
+                      data={{
+                      labels:['Cases','Death','Recoverd'],
+                    datasets:[
+                         {
+                           label:'Total',
+                           data:[showcountry.TotalConfirmed,showcountry.TotalDeaths,showcountry.TotalRecovered],
+                           borderColor:'black',
+                           backgroundColor:'blue' },
+                           {
+                           label:'New',
+                           data:[showcountry.NewConfirmed,showcountry.NewDeaths,showcountry.NewRecovered],
+                           borderColor:'black',
+                           backgroundColor:'red' },
+                             ] }}  
+                        options={options}
+                   />
+                    </div>
+                </div>
+            </div>:""}
+              
+             {/* all countries table  */}
            <div className="country-records-conatiner">
              <table className="all-countries-table" border="1px" cellSpacing="0" cellPadding="10%">
                 <thead>

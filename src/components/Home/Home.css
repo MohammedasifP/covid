@@ -35,7 +35,7 @@
     background-color: whitesmoke;
     display: flex;
     justify-content: center;
-    margin-top: 120px;
+    margin-top: 70px;
 }
 .all-countries-table{
     width: 100%;
@@ -64,4 +64,27 @@ thead th{
     text-align: center;
     margin-top: 25px;
     font-size: 20px;
+}
+.country-search-div{
+    margin-top: 100px;
+    text-align: center;
+}
+.country-search-div>input{
+    width: 250px;
+    height: 20px;
+}
+.country-search-div>button{
+    height: 27px;
+}
+.single-country-container{
+    height: 450px;
+    margin-top: 20px;
+    width: 90%;
+    border: 1px solid black;
+    background-color: turquoise;
+    position: absolute;
+    margin-left: 5%;
+}
+.single-country-table{
+      margin: auto;
 }
