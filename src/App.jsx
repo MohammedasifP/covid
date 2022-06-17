@@ -9,10 +9,10 @@ import {Home} from './components/Home/Home'
 function App() {
   return (
     <div className="App">
-      <Home/>
        <Routes>
-          <Route path="/sign-up"  element={<Signup/>}/>
+          <Route path="/"  element={<Signup/>}/>
           <Route path='/login' element={<Login/>}/>
+          <Route path='/home' element={<Home/>}/>
        </Routes>
     </div>
   );

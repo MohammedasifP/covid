@@ -13,6 +13,9 @@ import {
     Tooltip,
     Legend,
   } from 'chart.js';
+import { useDispatch, useSelector } from "react-redux";
+import { store } from "../Redux/store";
+import { logout } from "../Redux/Login/Loginaction";
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -43,6 +46,11 @@ const [country,setCountry]=useState({country:""})
 const [showcountry,setShowcountry]=useState({})
 const [showcountrydiv,setShowcountrydiv]=useState(false)
 
+const dispatch=useDispatch();
+const status=useSelector(store=>store.isAuthenticated)
+      if(!status){
+        window.location.href="/"
+      }
 
 const [date,setDate]=useState({date:""})
     useEffect(()=>{
@@ -117,11 +125,15 @@ const [date,setDate]=useState({date:""})
         }
        
    }
-   console.log(showcountry)
+   const logoutfun=()=>{
+      dispatch(logout())
+   }
+//    console.log(showcountry)
     return (
         <div className="home">
            <div className="corona-top-heading-div">
-              <h1>COVID-19 CORONAVIRUS PANDEMIC</h1>
+              <h1>COVID-19 CORONAVIRUS PANDEMIC </h1>
+              <button id='subbtn' onClick={logoutfun}>Logout</button>
            </div>
            <p className="corona-top-heading-div">{date.date}</p>
            
@@ -141,7 +153,7 @@ const [date,setDate]=useState({date:""})
            </div>
            
            {/* Globalplot */}
-           <div style={{height:"350px"}}>
+           <div style={{height:"350px",marginTop:"50px"}}>
              <div className="Bar-container" style={{height:"100%",width:"60%",border:"1px solid black"}}>
                <Bar
                  data={{
@@ -171,7 +183,7 @@ const [date,setDate]=useState({date:""})
             </div>
             {showcountrydiv?
             <div className="single-country-container">
-                <button onClick={()=>{setShowcountrydiv(false)}}>Back</button>
+                <button style={{backgroundColor:"red",color:"white"}} onClick={()=>{setShowcountrydiv(false)}}>Back</button>
                 <div className="single-country-table-container">
                     <table className="single-country-table" border="1px solid black" cellSpacing="0px">
                         <thead>

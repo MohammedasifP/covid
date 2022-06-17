@@ -3,9 +3,15 @@
 }
 .corona-top-heading-div{
     width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
     margin: auto;
     background-color: whitesmoke;
     text-align: center;
+    margin-bottom: 5px;
+    padding: 10px;
 }
 .global-cases-container{
     width: 90%;
