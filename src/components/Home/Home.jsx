@@ -3,6 +3,35 @@ import './Home.css'
 import {FaSortAmountDown} from "react-icons/fa";
 import {FaSortAmountDownAlt} from "react-icons/fa";
 import {FaSort} from "react-icons/fa";
+import {Bar} from 'react-chartjs-2'
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+  } from 'chart.js';
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+  );
+
+const options={
+    indexAxis:'x',
+    elements:{
+        bar:{
+            borderWidth:1,
+        },
+    },
+    responsive:true,
+
+}
 
 export const Home=()=>{
 const [covidata,setCoviddata]=useState({});
@@ -10,6 +39,7 @@ const [countrydata,setCountrydata]=useState([])
 const [icon,setIcon]=useState(true)
 const [totalcases,setTotalcases]=useState(true);
 const [totaldeaths,setTotaldeaths]=useState(true);
+console.log(covidata)
 
 const [date,setDate]=useState({date:""})
     useEffect(()=>{
@@ -91,6 +121,30 @@ const [date,setDate]=useState({date:""})
                 <h1 className="total-record">{covidata.TotalRecovered}</h1>
              </div> 
            </div>
+           <div style={{height:"350px"}}>
+        
+             <div className="Bar-container" style={{height:"100%",width:"60%",border:"1px solid black"}}>
+               <Bar
+                 data={{
+                      labels:['Cases','Death','Recoverd'],
+                    datasets:[
+                         {
+                           label:'Total',
+                           data:[covidata.TotalConfirmed,covidata.TotalDeaths,covidata.TotalRecovered],
+                           borderColor:'black',
+                           backgroundColor:'blue' },
+                           {
+                           label:'New',
+                           data:[covidata.NewConfirmed,covidata.NewDeaths,covidata.NewRecovered],
+                           borderColor:'black',
+                           backgroundColor:'red' },
+                             ] }}  
+                        options={options}
+                   />
+                </div>
+                <p className="global-plot">Global Plot</p>
+             </div>
+          
            <div className="country-records-conatiner">
              <table className="all-countries-table" border="1px" cellSpacing="0" cellPadding="10%">
                 <thead>
@@ -111,7 +165,7 @@ const [date,setDate]=useState({date:""})
                                 <td>{elem.Country}</td>
                                 <td>{elem.TotalConfirmed}</td>
                                 <td>{elem.NewConfirmed}</td>
-                                <td>{elem.TotalDeaths}</td>
+                                <td style={{backgroundColor:"red",color:"white"}}>{elem.TotalDeaths}</td>
                                 <td>{elem.NewDeaths}</td>
                                 <td>{elem.TotalRecovered}</td>
                                 <td>{elem.NewRecovered}</td>
@@ -121,6 +175,7 @@ const [date,setDate]=useState({date:""})
                 </tbody>
              </table>
            </div>
+          
         </div>
     )
 }
