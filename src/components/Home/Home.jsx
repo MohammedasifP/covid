@@ -136,7 +136,7 @@ const [date,setDate]=useState({date:""})
    const logoutfun=()=>{
       dispatch(logout())
    }
-//    console.log(showcountry)
+    console.log(showcountry)
     return (
         <div className="home">
            <div className="corona-top-heading-div">
@@ -273,7 +273,7 @@ const [date,setDate]=useState({date:""})
                 <tbody>
                     {countrydata.map((elem)=>{
                         return(
-                            <tr>
+                            <tr key={elem.ID}>
                                 <td>{elem.Country}</td>
                                 <td>{elem.TotalConfirmed}</td>
                                 <td>{elem.NewConfirmed}</td>
