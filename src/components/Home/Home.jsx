@@ -182,11 +182,11 @@ const [date,setDate]=useState({date:""})
                         options={options}
                    />
                 </div>
-                <p className="global-plot">Global Plot</p>
+                <p className="global-plot" style={{textDecoration:"underline"}}>Global Bar Plot</p>
              </div>
 
              {/* global Doughnut plot */}
-             <div style={{width:"28%",height:"20%",margin:"auto",marginTop:"80px"}}>
+             <div style={{width:"38%",height:"20%",margin:"auto",marginTop:"80px"}}>
                     <Doughnut
                       data={{
                       labels:['TotalCases','TotalDeaths','TotalRecoverd'],
@@ -201,6 +201,7 @@ const [date,setDate]=useState({date:""})
                              ] }}  
                         options={options}
                    />
+                   <p className="global-plot" style={{textDecoration:"underline"}}>Global Doughnut Plot</p>
                     </div>
 
              {/* Single country div */}
