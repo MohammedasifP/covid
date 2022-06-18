@@ -1,7 +1,9 @@
 
-# Gaana_Clone
-website_Link: https://covid-mohammedasifp.vercel.app
-Backend_repository_Link: https://github.com/MohammedasifP/covid-backend.git
+# Covid_app
+<ul>
+<li>website_Link: https://covid-mohammedasifp.vercel.app </li>
+<li>Backend_repository_Link: https://github.com/MohammedasifP/covid-backend.git</li>
+</ul>
 ## Tech Stack used:
 <ul>
   <li>React js</li>
