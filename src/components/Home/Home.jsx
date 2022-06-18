@@ -3,6 +3,7 @@ import './Home.css'
 import {FaSortAmountDown} from "react-icons/fa";
 import {FaSortAmountDownAlt} from "react-icons/fa";
 import {FaSort} from "react-icons/fa";
+import {Doughnut} from 'react-chartjs-2'
 import {Bar} from 'react-chartjs-2'
 import {
     Chart as ChartJS,
@@ -12,17 +13,20 @@ import {
     Title,
     Tooltip,
     Legend,
+    ArcElement,
   } from 'chart.js';
 import { useDispatch, useSelector } from "react-redux";
 import { store } from "../Redux/store";
 import { logout } from "../Redux/Login/Loginaction";
+
   ChartJS.register(
     CategoryScale,
-    LinearScale,
+   LinearScale,
     BarElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
+    ArcElement
   );
 
 const options={
@@ -45,6 +49,7 @@ const [totaldeaths,setTotaldeaths]=useState(true);
 const [country,setCountry]=useState({country:""})
 const [showcountry,setShowcountry]=useState({})
 const [showcountrydiv,setShowcountrydiv]=useState(false)
+const [correctcountryname,setCorrectcountryname]=useState(false)
 
 const dispatch=useDispatch();
 const status=useSelector(store=>store.isAuthenticated)
@@ -117,7 +122,10 @@ const [date,setDate]=useState({date:""})
    const displayCountry=()=>{
       const cdata=countrydata.filter((elem)=>{return elem.Country.toLowerCase()==country.toLowerCase()})
         if(cdata.length==0){
-            alert("please enter correct country name")
+            setCorrectcountryname(true);
+            setTimeout(()=>{
+              setCorrectcountryname(false)
+            },5000)
         }
         else{
             setShowcountrydiv(true)
@@ -158,6 +166,7 @@ const [date,setDate]=useState({date:""})
                <Bar
                  data={{
                       labels:['Cases','Death','Recoverd'],
+                      labels:['Cases','Death','Recoverd'],
                     datasets:[
                          {
                            label:'Total',
@@ -176,10 +185,29 @@ const [date,setDate]=useState({date:""})
                 <p className="global-plot">Global Plot</p>
              </div>
 
+             {/* global Doughnut plot */}
+             <div style={{width:"28%",height:"20%",margin:"auto",marginTop:"80px"}}>
+                    <Doughnut
+                      data={{
+                      labels:['TotalCases','TotalDeaths','TotalRecoverd'],
+                    datasets:[
+                         {
+                           label:'Total',
+                           data:[covidata.TotalConfirmed,covidata.TotalDeaths,covidata.TotalRecovered],
+                           borderColor:'black',
+                           backgroundColor:['blue','red','green'],
+                             },
+                             
+                             ] }}  
+                        options={options}
+                   />
+                    </div>
+
              {/* Single country div */}
             <div className="country-search-div">
                 <input type="text" placeholder="Enter the Country" onChange={handlechange}></input>
                 <button onClick={displayCountry}>Search</button>
+                {correctcountryname?<span style={{color:"red",position:"absolute"}}>Please enter correct country name</span>:""}
             </div>
             {showcountrydiv?
             <div className="single-country-container">
@@ -209,8 +237,8 @@ const [date,setDate]=useState({date:""})
                             </tr>
                         </tbody>
                     </table>
-                    <div style={{width:"50%",margin:"auto"}}>
-                    <Bar
+                    <div style={{width:"28%",height:"20%",margin:"auto"}}>
+                    <Doughnut
                       data={{
                       labels:['Cases','Death','Recoverd'],
                     datasets:[
@@ -218,12 +246,8 @@ const [date,setDate]=useState({date:""})
                            label:'Total',
                            data:[showcountry.TotalConfirmed,showcountry.TotalDeaths,showcountry.TotalRecovered],
                            borderColor:'black',
-                           backgroundColor:'blue' },
-                           {
-                           label:'New',
-                           data:[showcountry.NewConfirmed,showcountry.NewDeaths,showcountry.NewRecovered],
-                           borderColor:'black',
-                           backgroundColor:'red' },
+                           backgroundColor:['blue','red','green'],
+                             },
                              ] }}  
                         options={options}
                    />
